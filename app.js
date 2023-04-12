@@ -3,17 +3,17 @@ let display = document.getElementById('display');
 let buttons = Array.from(document.getElementsByClassName('button'));
 
 buttons.map( button => {
-    button.addEventListener('click', (e) => {
+    button.addEventListener('click', function(e) {
         switch(e.target.innerText){
             case 'C':
                 display.innerText = '';
                 break;
             case '=':
-                try{
-                    display.innerText = eval(display.innerText);
-                } catch {
-                    display.innerText = "Error"
-                }
+                let result = eval(display.innerText);
+                if(isNaN(result))
+                    display.innerText = "Invalid";
+                else
+                    display.innerText = result;
                 break;
             case '←':
                 if (display.innerText){
